@@ -1,7 +1,7 @@
 import { initializeApp } from 'firebase/app';
-import { getAuth, connectAuthEmulator } from 'firebase/auth';
-import { getFirestore, connectFirestoreEmulator } from 'firebase/firestore';
-import { getStorage, connectStorageEmulator } from 'firebase/storage';
+import { getAuth } from 'firebase/auth';
+import { getFirestore } from 'firebase/firestore';
+import { getStorage } from 'firebase/storage';
 
 // Firebase configuration
 const firebaseConfig = {
@@ -32,12 +32,7 @@ if (process.env.NODE_ENV === 'development') {
 
 // Test Firestore connection
 if (process.env.NODE_ENV === 'development') {
-  import('firebase/firestore').then(({ doc, getDoc }) => {
-    // Test Firestore connection by attempting to read a document
-    console.log('Testing Firestore connection...');
-  }).catch((error) => {
-    console.error('Firestore import error:', error);
-  });
+  console.log('Testing Firestore connection...');
 }
 
 export default app;

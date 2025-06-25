@@ -5,7 +5,7 @@ import { useRouter } from 'next/navigation';
 import Image from 'next/image';
 import { useAuth } from '../../../src/contexts/AuthContext';
 import CustomerNavigation from '../../../src/components/CustomerNavigation';
-import { Product, getActiveProducts, getProductsByCategory } from '../../../src/services/productService';
+import { Product, getActiveProducts } from '../../../src/services/productService';
 
 export default function CustomerShop() {
   const { currentUser, userRole, loading } = useAuth();

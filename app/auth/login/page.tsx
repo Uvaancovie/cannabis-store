@@ -10,8 +10,7 @@ export default function Login() {
   const [password, setPassword] = useState('');
   const [error, setError] = useState('');
   const [loading, setLoading] = useState(false);
-  const router = useRouter();
-  const { login, currentUser } = useAuth();
+  const router = useRouter();  const { login } = useAuth();
 
   const handleSubmit = async (e: FormEvent) => {
     e.preventDefault();
@@ -20,9 +19,8 @@ export default function Login() {
       setError('');
       setLoading(true);
       await login(email, password);
-      router.push('/'); // Redirect to home page after successful login
-    } catch (error: any) {
-      setError(error.message || 'Failed to log in');
+      router.push('/'); // Redirect to home page after successful login    } catch (error) {
+      setError('Failed to log in');
     } finally {
       setLoading(false);
     }
@@ -88,9 +86,8 @@ export default function Login() {
           </div>
         </form>
         
-        <div className="mt-4 text-center text-sm">
-          <p>
-            Don't have an account?{' '}
+        <div className="mt-4 text-center text-sm">          <p>
+            Don&apos;t have an account?{' '}
             <Link href="/auth/signup" className="font-medium text-green-600 hover:text-green-500">
               Sign up
             </Link>

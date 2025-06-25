@@ -20,7 +20,7 @@ interface Order {
 export default function CustomerOrders() {
   const { currentUser, userRole, loading } = useAuth();
   const router = useRouter();
-  const [orders, setOrders] = useState<Order[]>([
+  const [orders] = useState<Order[]>([
     {
       id: 'ORD-001',
       date: '2025-06-20',

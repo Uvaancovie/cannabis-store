@@ -26,9 +26,8 @@ export default function Signup() {
       setError('');
       setLoading(true);
       await signup(email, password, role);
-      router.push('/'); // Redirect to home page after successful signup
-    } catch (error: any) {
-      setError(error.message || 'Failed to create an account');
+      router.push('/'); // Redirect to home page after successful signup    } catch (error) {
+      setError('Failed to create an account');
     } finally {
       setLoading(false);
     }

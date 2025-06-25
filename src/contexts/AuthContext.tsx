@@ -17,9 +17,8 @@ type UserRole = 'admin' | 'customer' | null;
 interface AuthContextType {
   currentUser: User | null;
   userRole: UserRole;
-  loading: boolean;
-  signup: (email: string, password: string, role: 'admin' | 'customer') => Promise<any>;
-  login: (email: string, password: string) => Promise<any>;
+  loading: boolean;  signup: (email: string, password: string, role: 'admin' | 'customer') => Promise<void>;
+  login: (email: string, password: string) => Promise<void>;
   logout: () => Promise<void>;
 }
 
@@ -52,38 +51,17 @@ export const AuthProvider = ({ children }: AuthProviderProps) => {
       console.log('Creating user document in Firestore...');
       await setDoc(doc(db, 'users', userCredential.user.uid), {
         email,
-        role,
-        createdAt: new Date().toISOString()
+        role,        createdAt: new Date().toISOString()
       });
-      console.log('User document created in Firestore successfully');
-      return userCredential;
-    } catch (error: any) {
-      console.error('Signup error details:', {
-        code: error.code,
-        message: error.message,
-        customData: error.customData
-      });
-      
-      // Provide user-friendly error messages
-      if (error.code === 'auth/email-already-in-use') {
-        throw new Error('An account with this email already exists.');
-      } else if (error.code === 'auth/weak-password') {
-        throw new Error('Password should be at least 6 characters.');
-      } else if (error.code === 'auth/invalid-email') {
-        throw new Error('Please enter a valid email address.');
-      } else if (error.code === 'auth/configuration-not-found') {
-        throw new Error('Firebase configuration error. Please check your setup.');
-      } else {
-        throw new Error(error.message || 'Failed to create account. Please try again.');
-      }
+      console.log('User document created in Firestore successfully');    } catch (error) {
+      console.error('Signup error:', error);
+      throw new Error('Failed to create account. Please try again.');
     }
   };
-
   // Login existing user
   const login = async (email: string, password: string) => {
     try {
-      const userCredential = await signInWithEmailAndPassword(auth, email, password);
-      return userCredential;
+      await signInWithEmailAndPassword(auth, email, password);
     } catch (error) {
       throw error;
     }

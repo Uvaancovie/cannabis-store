@@ -6,7 +6,7 @@ import Link from 'next/link';
 import { useAuth } from '../../../src/contexts/AuthContext';
 
 export default function AdminDashboard() {
-  const { currentUser, userRole, loading } = useAuth();
+  const { currentUser, userRole, loading, logout } = useAuth();
   const router = useRouter();
 
   // Protect the admin route
@@ -44,9 +44,8 @@ export default function AdminDashboard() {
                   className="text-gray-200 hover:text-white px-3 py-2 rounded-md text-sm font-medium"
                 >
                   Home
-                </button>
-                <button 
-                  onClick={() => useAuth().logout()}
+                </button>                <button 
+                  onClick={() => logout()}
                   className="text-gray-200 hover:text-white px-3 py-2 rounded-md text-sm font-medium"
                 >
                   Log Out

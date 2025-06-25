@@ -284,7 +284,7 @@ export default function Home() {
                 href="/auth/signup"
                 className="bg-green-600 text-white px-8 py-4 rounded-md font-semibold text-lg hover:bg-green-700 transition"
               >
-                Create Account - It's Free!
+                Create Account - It&apos;s Free!
               </Link>
               <Link
                 href="/auth/login"
